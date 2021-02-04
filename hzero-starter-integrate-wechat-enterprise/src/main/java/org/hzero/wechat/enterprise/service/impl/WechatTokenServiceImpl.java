@@ -26,7 +26,7 @@ public class WechatTokenServiceImpl implements WechatTokenService {
 
     @Override
     public TokenDTO getTokenWithCache(String corpId, String corpSecret, SecretTypeEnum secretTypeEnum) {
-        String key = WX_TOKEN_KEY + ":" + corpId;
+        String key = WX_TOKEN_KEY + ":" + corpId + ":" + corpSecret;
         if (secretTypeEnum.equals(SecretTypeEnum.APP)) {
             key = key + ":" + SecretTypeEnum.APP.getCode();
         } else if (secretTypeEnum.equals(SecretTypeEnum.CORP)) {

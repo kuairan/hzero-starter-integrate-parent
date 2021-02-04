@@ -60,7 +60,7 @@ public class BaseWechatServiceImpl implements BaseWechatService {
 
     @Override
     public TokenDTO getTokenWithCache(String appId, String appSecret) {
-        String key = WX_TOKEN_KEY + ":" + appId;
+        String key = WX_TOKEN_KEY + ":" + appId + ":" + appSecret;
         ValueOperations<String, TokenDTO> valueOperations = redisTemplate.opsForValue();
         if (redisTemplate.hasKey(key)) {
             TokenDTO tokenDTO = valueOperations.get(key);
@@ -115,7 +115,7 @@ public class BaseWechatServiceImpl implements BaseWechatService {
 
     @Override
     public JsTicketDTO getjsapiTicketWithCache(String accessToken, String appId) {
-        String key = WX_TOKEN_KEY+":jsapi-ticket:" + appId;
+        String key = WX_TOKEN_KEY+":jsapi-ticket:" + appId + ":" + accessToken;
         ValueOperations<String, JsTicketDTO> valueOperations = redisTemplate.opsForValue();
         if (redisTemplate.hasKey(key)) {
             JsTicketDTO jsTicketDTO = valueOperations.get(key);

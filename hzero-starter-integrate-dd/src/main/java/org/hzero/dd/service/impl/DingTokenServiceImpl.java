@@ -27,7 +27,7 @@ public class DingTokenServiceImpl implements DingTokenService {
 
     @Override
     public TokenDTO getTokenWithCache(String appId, String appSecret) {
-        String key = DD_TOKEN_KEY + ":" + appId;
+        String key = DD_TOKEN_KEY + ":" + appId + ":" + appSecret;
         ValueOperations<String, TokenDTO> valueOperations = redisTemplate.opsForValue();
         if (redisTemplate.hasKey(key)) {
             TokenDTO tokenDTO = valueOperations.get(key);
